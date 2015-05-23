@@ -35,14 +35,16 @@
 }
 
 - (void)handleLongPressForCell:(NSNotification  *)notification {
-    self.tappedCell = notification.object;
-    if ([self.tappedCell.locationInfoLabel.text isEqualToString:UNKNOWN_LOCATION] && !self.tappedCell.isObserving) {
-        UIActionSheet *actionsheet = [[UIActionSheet alloc] initWithTitle:@"Notify?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:nil otherButtonTitles:@"Yes", nil];
-        [actionsheet showInView:self.view];
-    }
-    else {
-        UIActionSheet *actionsheet = [[UIActionSheet alloc] initWithTitle:@"Remove Observer?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:nil otherButtonTitles:@"Yes", nil];
-        [actionsheet showInView:self.view];
+    if ([self.tappedCell.locationInfoLabel.text isEqualToString:UNKNOWN_LOCATION]) {
+        self.tappedCell = notification.object;
+        if (!self.tappedCell.isObserving) {
+            UIActionSheet *actionsheet = [[UIActionSheet alloc] initWithTitle:@"Notify?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:nil otherButtonTitles:@"Yes", nil];
+            [actionsheet showInView:self.view];
+        }
+        else {
+            UIActionSheet *actionsheet = [[UIActionSheet alloc] initWithTitle:@"Remove Observer?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:nil otherButtonTitles:@"Yes", nil];
+            [actionsheet showInView:self.view];
+        }
     }
 }
 
