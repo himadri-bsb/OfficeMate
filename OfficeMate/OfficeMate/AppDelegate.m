@@ -198,7 +198,7 @@
     
     NSDictionary *alertValue = [[NSUserDefaults standardUserDefaults] valueForKey:kWalkAlertKey];
 
-    NSTimeInterval interval = [[[alertValue allValues] firstObject] floatValue];//*60;
+    NSTimeInterval interval = [[[alertValue allValues] firstObject] floatValue]*60;
     // current time plus 10 secs
     NSDate *now = [NSDate date];
     NSDate *dateToFire = [now dateByAddingTimeInterval:interval];
