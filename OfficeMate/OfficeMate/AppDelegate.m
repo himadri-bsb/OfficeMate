@@ -25,8 +25,8 @@
     [Fabric with:@[DigitsKit]];
 
     //Parse
-    [Parse setApplicationId:@"0SZHAUr4NVtlz0qBXwNUOkApVHVkcetuX4NjSwcZ"
-                  clientKey:@"rFytQ0uWQ81e2kdQOaQhHRVxeM416Cv5N9C0J4Vr"];
+    [Parse setApplicationId:@"dv11KZfycI8fr3pIFaJYIzoS0kvxxVVfARjko9oy"
+                  clientKey:@"lJLHnb0K81fxhWQ7hexYIIlLLGEiCH1r0qlIZvnw"];
     
     return YES;
 }
