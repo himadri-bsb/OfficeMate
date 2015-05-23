@@ -35,4 +35,10 @@
     }
 }
 
++(void)setUpNavigatioNBarAppearance {
+    [[UINavigationBar appearance] setBarTintColor:[OMAppearance appThemeColorWithAlpha:1.0f]];
+    [[UINavigationBar appearance]  setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+}
+
 @end

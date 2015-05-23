@@ -13,6 +13,7 @@
 @property (strong, nonatomic) UIWindow *window;
 
 + (AppDelegate *)sharedAppDelegate;
-
+- (void)showLoader:(BOOL)show;
+- (void)handleSignUpCompletion;
 @end
 

@@ -13,6 +13,17 @@
 #import "OMUser.h"
 #import "OMModelManager.h"
 #import <Parse/Parse.h>
+#import "AppDelegate.h"
+
+@implementation UITabBarController (ChildStatusBarStyle)
+
+- (UIViewController *)childViewControllerForStatusBarStyle
+{
+    return [[(UINavigationController *)[self.viewControllers firstObject] viewControllers] firstObject];
+}
+
+@end
+
 
 @interface OMHomeTableViewController ()<UIActionSheetDelegate>
 
@@ -26,13 +37,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationController.navigationBar.barTintColor = [OMAppearance appThemeColorWithAlpha:1];
-    self.navigationController.navigationBar.tintColor = [OMAppearance appBgColorWithAlpha:1];
     [self setNeedsStatusBarAppearanceUpdate];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleLongPressForCell:) name:kNotification_LongPressTableCell object:nil];
-
     
+    self.tableView.tableFooterView = [[UIView alloc] init];
     [self refreshData];
 }
 
@@ -103,6 +112,12 @@
     
     cell.userInfoLabel.text =[NSString stringWithFormat:@"%@  (%@)",user.userName, user.phoneNumber];
     cell.locationInfoLabel.text = user.location;
+    if ((indexPath.row % 2) == 0) {
+        cell.avatarImageView.image = [UIImage imageNamed:@"avatar"];
+    }
+    else {
+        cell.avatarImageView.image = [UIImage imageNamed:@"avatar1"];
+    }
     if (cell.isObserving) {
         cell.observingIndicator.hidden = NO;
     }
@@ -116,6 +131,7 @@
 
 
 - (void)refreshData {
+    [[AppDelegate sharedAppDelegate] showLoader:YES];
     OMUser *currentUser = [[OMModelManager sharedManager] currentUser];
     PFQuery *query = [PFUser query];
     [query whereKey:@"username" notEqualTo:currentUser.parseUser.username];
@@ -132,22 +148,13 @@
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Refresh Error" message:[NSString stringWithFormat:@"Error = %@",error] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
                 [alertView show];
             }
+            [[AppDelegate sharedAppDelegate] showLoader:NO];
         });
     }];
 }
 
 - (IBAction)refreshAction:(id)sender {
    [self refreshData];
-
-    /*
-     Hard coded push sending
-    PFQuery *pushQuery = [PFInstallation query];
-    [pushQuery whereKey:INSTALLATION_USER_ID equalTo:@"CaZANpFSeq"];
-
-    // Send push notification to query
-    [PFPush sendPushMessageToQueryInBackground:pushQuery
-                                   withMessage:@"Hello World1"];
-     */
 }
 
 - (void)setLocationTriggerForUserNumber:(NSString*)msisdn enable:(BOOL)enable {

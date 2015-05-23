@@ -41,6 +41,9 @@
 		D35ED1BE1B10715A00164ABA /* OMHomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D35ED1BC1B10715A00164ABA /* OMHomeTableViewCell.m */; };
 		D35ED1C11B1071AC00164ABA /* OMAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = D35ED1C01B1071AC00164ABA /* OMAppearance.m */; };
 		D35ED1C91B10900700164ABA /* OMSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D35ED1C81B10900700164ABA /* OMSettingsTableViewController.m */; };
+		D35ED1D51B10CA1200164ABA /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = D35ED1D01B10CA1200164ABA /* SVIndefiniteAnimatedView.m */; };
+		D35ED1D61B10CA1200164ABA /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D35ED1D21B10CA1200164ABA /* SVProgressHUD.bundle */; };
+		D35ED1D71B10CA1200164ABA /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D35ED1D41B10CA1200164ABA /* SVProgressHUD.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +106,12 @@
 		D35ED1C01B1071AC00164ABA /* OMAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OMAppearance.m; sourceTree = "<group>"; };
 		D35ED1C71B10900700164ABA /* OMSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMSettingsTableViewController.h; sourceTree = "<group>"; };
 		D35ED1C81B10900700164ABA /* OMSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OMSettingsTableViewController.m; sourceTree = "<group>"; };
+		D35ED1CF1B10CA1200164ABA /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
+		D35ED1D01B10CA1200164ABA /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
+		D35ED1D11B10CA1200164ABA /* SVProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
+		D35ED1D21B10CA1200164ABA /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		D35ED1D31B10CA1200164ABA /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		D35ED1D41B10CA1200164ABA /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +220,7 @@
 				D35ED1C81B10900700164ABA /* OMSettingsTableViewController.m */,
 				D35ED1861B10409300164ABA /* Main.storyboard */,
 				D35ED1A81B104A2E00164ABA /* HomeStoryBoard.storyboard */,
+				D35ED1D81B10CA1B00164ABA /* Loader */,
 				D35ED1891B10409300164ABA /* Images.xcassets */,
 				D35ED18B1B10409300164ABA /* LaunchScreen.xib */,
 				D35ED17C1B10409300164ABA /* Supporting Files */,
@@ -258,6 +268,19 @@
 				D35ED1971B10409300164ABA /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D35ED1D81B10CA1B00164ABA /* Loader */ = {
+			isa = PBXGroup;
+			children = (
+				D35ED1CF1B10CA1200164ABA /* SVIndefiniteAnimatedView.h */,
+				D35ED1D01B10CA1200164ABA /* SVIndefiniteAnimatedView.m */,
+				D35ED1D11B10CA1200164ABA /* SVProgressHUD-Prefix.pch */,
+				D35ED1D21B10CA1200164ABA /* SVProgressHUD.bundle */,
+				D35ED1D31B10CA1200164ABA /* SVProgressHUD.h */,
+				D35ED1D41B10CA1200164ABA /* SVProgressHUD.m */,
+			);
+			name = Loader;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -341,6 +364,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D35ED1D61B10CA1200164ABA /* SVProgressHUD.bundle in Resources */,
 				26AC2C551B104B95001F9FAD /* DigitsKitResources.bundle in Resources */,
 				D35ED1881B10409300164ABA /* Main.storyboard in Resources */,
 				26AC2C811B10661D001F9FAD /* Beaconstac.bundle in Resources */,
@@ -385,9 +409,11 @@
 				D35ED1C91B10900700164ABA /* OMSettingsTableViewController.m in Sources */,
 				D35ED1BD1B10715A00164ABA /* OMHomeTableViewController.m in Sources */,
 				26AC2C791B10572D001F9FAD /* OMModelManager.m in Sources */,
+				D35ED1D51B10CA1200164ABA /* SVIndefiniteAnimatedView.m in Sources */,
 				D35ED1821B10409300164ABA /* AppDelegate.m in Sources */,
 				D35ED1C11B1071AC00164ABA /* OMAppearance.m in Sources */,
 				26AC2C7C1B1058DB001F9FAD /* OMUser.m in Sources */,
+				D35ED1D71B10CA1200164ABA /* SVProgressHUD.m in Sources */,
 				D35ED17F1B10409300164ABA /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
