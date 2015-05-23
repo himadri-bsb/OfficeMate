@@ -6,18 +6,18 @@
 //  Copyright (c) 2015 Ravindra Shetty. All rights reserved.
 //
 
-#import "OMHomeScreenViewControllerTableViewController.h"
+#import "OMHomeTableViewController.h"
 #import "OMHomeTableViewCell.h"
 #import "OMAppearance.h"
 #import "OMUser.h"
 #import "OMModelManager.h"
 #import <Parse/Parse.h>
 
-@interface OMHomeScreenViewControllerTableViewController ()
+@interface OMHomeTableViewController ()
 @property (nonatomic, strong) NSMutableArray *usersArray;
 @end
 
-@implementation OMHomeScreenViewControllerTableViewController
+@implementation OMHomeTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
