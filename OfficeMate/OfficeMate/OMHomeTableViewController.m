@@ -15,8 +15,10 @@
 #import <Parse/Parse.h>
 
 @interface OMHomeTableViewController ()<UIActionSheetDelegate>
+
 @property (nonatomic, strong) NSMutableArray *usersArray;
 @property (nonatomic, assign) OMHomeTableViewCell *tappedCell;
+
 @end
 
 @implementation OMHomeTableViewController
@@ -66,8 +68,8 @@
         NSIndexPath *path = [self.tableView indexPathForCell:self.tappedCell];
         PFUser *parseUser = [self.usersArray objectAtIndex:path.row];
         OMUser *user = [[OMUser alloc] initWithPFUser:parseUser];
-        [user setLocationTriggerForUser:shouldSetTrigger];
 
+        [self setLocationTriggerForUserNumber:user.phoneNumber enable:shouldSetTrigger];
     }
 }
 
@@ -135,27 +137,63 @@
 }
 
 - (IBAction)refreshAction:(id)sender {
-    // TEst Code
-    PFQuery *pushQuery = [PFInstallation query];
-    [pushQuery whereKey:@"deviceType" equalTo:@"ios"];
-    
-    // Send push notification to query
-    [PFPush sendPushMessageToQueryInBackground:pushQuery
-                                   withMessage:@"Hello World!"];
-    
-   // [self refreshData];
-
+   [self refreshData];
 
     /*
-    [PFCloud callFunctionInBackground:@"hello"
-                       withParameters:@{}
-                                block:^(NSString *result, NSError *error) {
-                                    if (!error) {
-                                        // result is @"Hello world!"
-                                    }
-                                }];
-     
+     Hard coded push sending
+    PFQuery *pushQuery = [PFInstallation query];
+    [pushQuery whereKey:INSTALLATION_USER_ID equalTo:@"CaZANpFSeq"];
+
+    // Send push notification to query
+    [PFPush sendPushMessageToQueryInBackground:pushQuery
+                                   withMessage:@"Hello World1"];
      */
 }
+
+- (void)setLocationTriggerForUserNumber:(NSString*)msisdn enable:(BOOL)enable {
+    NSString *currentUserMsisdn = [[[OMModelManager sharedManager] currentUser] phoneNumber];
+    PFQuery *query = [PFQuery queryWithClassName:TRIGGER_CLASS_NAME];
+    [query whereKey:TRIGGER_OBSERVER equalTo:currentUserMsisdn];
+    [query whereKey:TRIGGER_SENDER equalTo:msisdn];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        // Do something with the returned PFObject in the gameScore variable.
+        if([objects count]) {
+            PFObject *existingObj = [objects lastObject];
+            existingObj[TRIGGER_OBSERVER] = currentUserMsisdn;
+            existingObj[TRIGGER_SENDER] = msisdn;
+            existingObj[TRIGGER_ISSET] = enable ? YES_STRING : NO_STRING;
+            [existingObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if(!succeeded) {
+                    NSLog(@"Failed to set location trigger existing object, error=%@",error);
+                }
+            }];
+        }
+        else {
+            //Object doesn't exist
+            PFObject *locTrigger = [PFObject objectWithClassName:TRIGGER_CLASS_NAME];
+            locTrigger[TRIGGER_OBSERVER] = currentUserMsisdn;
+            locTrigger[TRIGGER_SENDER] = msisdn;
+            locTrigger[TRIGGER_ISSET] = enable ? YES_STRING : NO_STRING;
+            [locTrigger saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if(!succeeded) {
+                    NSLog(@"Failed to set location trigger new object, error=%@",error);
+                }
+            }];
+        }
+    }];
+}
+
+
+- (void)deleteLocationTriggerForUserNumber:(NSString*)msisdn enable:(BOOL)enable {
+    PFQuery *query = [PFQuery queryWithClassName:TRIGGER_CLASS_NAME];
+    [query whereKey:TRIGGER_OBSERVER equalTo:[[[OMModelManager sharedManager] currentUser] phoneNumber]];
+    [query whereKey:TRIGGER_SENDER equalTo:msisdn];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        for(PFObject *object in objects) {
+            [object deleteInBackground];
+        }
+    }];
+}
+
 
 @end

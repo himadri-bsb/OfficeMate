@@ -82,7 +82,7 @@
     }
     MSBeacon *campedBeacon = (MSBeacon*)beacon;
     NSString *location = [[campedBeacon.beaconKey uppercaseString] stringByReplacingOccurrencesOfString:@"B9407F30-F5F8-466E-AFF9-25556B57FE6D:" withString:@""];
-    NSString *exactLocation = location;
+    NSString *exactLocation = UNKNOWN_LOCATION;
     if([location isEqualToString:@"6616:56252"]) {
         exactLocation = @"Cafe";
     }
@@ -93,7 +93,22 @@
 
 
     if(![currentUser.location isEqualToString:exactLocation]) {
+        NSString *oldLocation = currentUser.location;
         currentUser.location = exactLocation;
+
+        if([oldLocation isEqualToString:UNKNOWN_LOCATION] && ![exactLocation isEqualToString:UNKNOWN_LOCATION]) {
+            //This might be the case of sending push notification
+            PFQuery *query = [PFQuery queryWithClassName:TRIGGER_CLASS_NAME];
+            [query whereKey:TRIGGER_SENDER equalTo:[[[OMModelManager sharedManager] currentUser] phoneNumber]];
+            [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                for (PFObject *object in objects) {
+                    if([object[TRIGGER_ISSET] isEqualToString:YES_STRING]) {
+                        [self sendPushToMsisdn:[object[TRIGGER_OBSERVER] copy] location:exactLocation];
+                        [object deleteInBackground];
+                    }
+                }
+            }];
+        }
 
         [currentUser.parseUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if(error) {
@@ -135,6 +150,28 @@
 // Tells the delegate when the device has exited a beacon region
 - (void)beaconstac:(Beaconstac*)beaconstac didExitBeaconRegion:(CLRegion *)region {
     NSLog(@"DemoApp:Exited beacon region :%@", region.identifier);
+}
+
+#pragma mark - Push Notification Sending
+- (void)sendPushToMsisdn:(NSString*)msisdn location:(NSString*)location{
+    NSString *pushText = [NSString stringWithFormat:@"%@ is near %@ now!", [[[OMModelManager sharedManager] currentUser] userName], location];
+
+    //Do an user query based on msisdn
+    PFQuery *query = [PFUser query];
+    [query whereKey:@"username" equalTo:msisdn];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        PFUser *user = [objects lastObject];
+        if(user) {
+            PFQuery *pushQuery = [PFInstallation query];
+            [pushQuery whereKey:INSTALLATION_USER_ID equalTo:user.objectId];
+
+            // Send push notification to query
+            [PFPush sendPushMessageToQueryInBackground:pushQuery
+                                           withMessage:pushText];
+        }
+    }];
+
+
 }
 
 
