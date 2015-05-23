@@ -204,7 +204,7 @@
     NSDate *dateToFire = [now dateByAddingTimeInterval:interval];
     
     self.takeWalkNotif.fireDate = dateToFire;
-    self.takeWalkNotif.alertBody = [NSString stringWithFormat:@"Hey, You are sitting at your desk from past %.0f mins! Get up and take some walk.",interval];
+    self.takeWalkNotif.alertBody = [NSString stringWithFormat:@"Hey, You are sitting at your desk from past %@ mins! Get up and take some walk.",[[alertValue allValues] firstObject]];
     self.takeWalkNotif.soundName = UILocalNotificationDefaultSoundName;
     self.takeWalkNotif.applicationIconBadgeNumber = 1;
     
