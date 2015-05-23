@@ -12,6 +12,7 @@ static NSString * const USER_NAME_KEY = @"name";
 static NSString * const USER_LOCATION_KEY = @"location";
 static NSString * const USER_ID_KEY = @"userid";
 NSString * const USER_PHONE_NO = @"phoneno";
+static NSString * const LOC_TRIGGER = @"loctrigger";
 
 @interface OMUser ()
 
@@ -60,6 +61,11 @@ NSString * const USER_PHONE_NO = @"phoneno";
  - (NSString*)location {
      return [self.parseUser objectForKey:USER_LOCATION_KEY];
  }
+
+- (void)setLocationTriggerForUser:(BOOL)setTrigger {
+    [self.parseUser setObject:@(setTrigger) forKeyedSubscript:LOC_TRIGGER];
+    [self.parseUser saveInBackground];
+}
 
 
 @end

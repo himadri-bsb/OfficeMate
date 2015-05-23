@@ -113,6 +113,18 @@
 
 - (IBAction)refreshAction:(id)sender {
     [self refreshData];
+
+
+    /*
+    [PFCloud callFunctionInBackground:@"hello"
+                       withParameters:@{}
+                                block:^(NSString *result, NSError *error) {
+                                    if (!error) {
+                                        // result is @"Hello world!"
+                                    }
+                                }];
+     
+     */
 }
 
 @end
