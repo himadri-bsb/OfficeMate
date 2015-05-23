@@ -23,7 +23,6 @@
 		26AC2C6B1B10521C001F9FAD /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26AC2C6A1B10521C001F9FAD /* CoreAudio.framework */; };
 		26AC2C6D1B105262001F9FAD /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26AC2C6C1B105262001F9FAD /* MobileCoreServices.framework */; };
 		26AC2C711B105277001F9FAD /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26AC2C6E1B105277001F9FAD /* AudioToolbox.framework */; };
-		26AC2C731B105277001F9FAD /* CoreAudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26AC2C701B105277001F9FAD /* CoreAudioKit.framework */; };
 		26AC2C751B1052CD001F9FAD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26AC2C741B1052CD001F9FAD /* SystemConfiguration.framework */; };
 		D35ED17F1B10409300164ABA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D35ED17E1B10409300164ABA /* main.m */; };
 		D35ED1821B10409300164ABA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D35ED1811B10409300164ABA /* AppDelegate.m */; };
@@ -91,7 +90,6 @@
 			files = (
 				26AC2C751B1052CD001F9FAD /* SystemConfiguration.framework in Frameworks */,
 				26AC2C711B105277001F9FAD /* AudioToolbox.framework in Frameworks */,
-				26AC2C731B105277001F9FAD /* CoreAudioKit.framework in Frameworks */,
 				26AC2C6B1B10521C001F9FAD /* CoreAudio.framework in Frameworks */,
 				26AC2C6D1B105262001F9FAD /* MobileCoreServices.framework in Frameworks */,
 				26AC2C691B105204001F9FAD /* CFNetwork.framework in Frameworks */,
