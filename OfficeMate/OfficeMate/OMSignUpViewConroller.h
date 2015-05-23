@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  OMSignUpViewConroller.h
 //  OfficeMate
 //
 //  Created by Ravindra Shetty on 23/05/15.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface OMSignUpViewConroller : UIViewController
 
 @end
-
