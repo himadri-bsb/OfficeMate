@@ -75,6 +75,8 @@
     [application registerUserNotificationSettings:settings];
     [application registerForRemoteNotifications];
     
+    [OMAppearance setUpNavigatioNBarAppearance];
+    
     return YES;
 }
 

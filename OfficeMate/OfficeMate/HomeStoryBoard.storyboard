@@ -24,7 +24,7 @@
             </objects>
             <point key="canvasLocation" x="-379" y="-44"/>
         </scene>
-        <!--Home Table View Controller-->
+        <!--Buddies-->
         <scene sceneID="TOL-Gt-FBQ">
             <objects>
                 <tableViewController id="m4k-Ja-77G" customClass="OMHomeTableViewController" sceneMemberID="viewController">
@@ -42,7 +42,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bix-VQ-vQj">
                                             <rect key="frame" x="72" y="14" width="510" height="20"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="gpo-ko-r5T">
@@ -56,7 +56,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MuW-8d-cRj">
                                             <rect key="frame" x="72" y="39" width="510" height="18"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8zA-LK-nkn">
@@ -94,7 +94,7 @@
                             <outlet property="delegate" destination="m4k-Ja-77G" id="WZ5-f1-E37"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="QnB-Nf-mH1">
+                    <navigationItem key="navigationItem" title="Buddies" id="QnB-Nf-mH1">
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="czy-sY-MZn">
                             <connections>
                                 <action selector="refreshAction:" destination="m4k-Ja-77G" id="eDU-9N-bIz"/>
@@ -124,34 +124,28 @@
             </objects>
             <point key="canvasLocation" x="1922" y="-346"/>
         </scene>
-        <!--Settings Table View Controller-->
+        <!--Profile-->
         <scene sceneID="clc-Ih-LOu">
             <objects>
                 <tableViewController id="qKE-lW-enU" customClass="OMSettingsTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="O5e-rn-sGt">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="hSN-N3-jiP">
-                            <rect key="frame" x="0.0" y="64" width="600" height="213"/>
+                            <rect key="frame" x="0.0" y="64" width="600" height="200"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ink-Ay-6VA">
                                     <rect key="frame" x="16" y="132" width="568" height="21"/>
                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PhoneNumber" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xZ9-DO-KGA">
                                     <rect key="frame" x="16" y="164" width="568" height="17"/>
                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lasttime" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ZP-Px-Qwy">
-                                    <rect key="frame" x="16" y="186" width="568" height="17"/>
-                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="tV2-iD-be6">
@@ -162,17 +156,14 @@
                                     </constraints>
                                 </imageView>
                             </subviews>
-                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstAttribute="bottom" secondItem="6ZP-Px-Qwy" secondAttribute="bottom" constant="10" id="2fs-hj-gq7"/>
-                                <constraint firstItem="6ZP-Px-Qwy" firstAttribute="leading" secondItem="hSN-N3-jiP" secondAttribute="leading" constant="16" id="GUA-pb-jBH"/>
+                                <constraint firstAttribute="bottom" secondItem="xZ9-DO-KGA" secondAttribute="bottom" constant="19" id="27f-25-I8D"/>
                                 <constraint firstItem="xZ9-DO-KGA" firstAttribute="leading" secondItem="hSN-N3-jiP" secondAttribute="leading" constant="16" id="JfT-WH-c3n"/>
                                 <constraint firstAttribute="centerX" secondItem="tV2-iD-be6" secondAttribute="centerX" id="MsD-qX-yaT"/>
                                 <constraint firstItem="ink-Ay-6VA" firstAttribute="top" secondItem="tV2-iD-be6" secondAttribute="bottom" constant="10" id="NIs-FY-X1O"/>
-                                <constraint firstItem="6ZP-Px-Qwy" firstAttribute="top" secondItem="xZ9-DO-KGA" secondAttribute="bottom" constant="5" id="PYD-bV-CkN"/>
                                 <constraint firstItem="ink-Ay-6VA" firstAttribute="leading" secondItem="hSN-N3-jiP" secondAttribute="leading" constant="16" id="WBu-qJ-FdN"/>
                                 <constraint firstAttribute="trailing" secondItem="ink-Ay-6VA" secondAttribute="trailing" constant="16" id="WQP-w4-U3I"/>
-                                <constraint firstAttribute="trailing" secondItem="6ZP-Px-Qwy" secondAttribute="trailing" constant="16" id="Wl1-SM-hLh"/>
                                 <constraint firstAttribute="trailing" secondItem="xZ9-DO-KGA" secondAttribute="trailing" constant="16" id="rQM-T7-Exf"/>
                                 <constraint firstItem="xZ9-DO-KGA" firstAttribute="top" secondItem="ink-Ay-6VA" secondAttribute="bottom" constant="10" id="vgT-gT-s89"/>
                             </constraints>
@@ -202,9 +193,8 @@
                             <outlet property="delegate" destination="qKE-lW-enU" id="PV9-HK-uaF"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Ciw-jb-ATq"/>
+                    <navigationItem key="navigationItem" title="Profile" id="Ciw-jb-ATq"/>
                     <connections>
-                        <outlet property="lastseenLabel" destination="6ZP-Px-Qwy" id="TWw-wX-FOs"/>
                         <outlet property="nameField" destination="ink-Ay-6VA" id="07g-2y-EE0"/>
                         <outlet property="phonenumberLable" destination="xZ9-DO-KGA" id="o4M-nz-3FY"/>
                     </connections>
@@ -213,12 +203,12 @@
             </objects>
             <point key="canvasLocation" x="1183" y="342"/>
         </scene>
-        <!--Buddy-->
+        <!--Buddies-->
         <scene sceneID="SKn-6I-wmt">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="atK-2P-R6t" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Buddy" id="XjL-wB-0VX">
-                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-10"/>
+                    <tabBarItem key="tabBarItem" title="Buddies" image="buddies" id="XjL-wB-0VX">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="KUT-HA-d0z">
@@ -234,12 +224,12 @@
             </objects>
             <point key="canvasLocation" x="371" y="-346"/>
         </scene>
-        <!--Settings-->
+        <!--Profile-->
         <scene sceneID="gku-Az-FEa">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FR5-TU-Aft" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" id="txH-x8-m4i">
-                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-10"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="profile" id="txH-x8-m4i">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nB6-FQ-czm">
@@ -258,5 +248,7 @@
     </scenes>
     <resources>
         <image name="avatar" width="170" height="170"/>
+        <image name="buddies" width="32" height="32"/>
+        <image name="profile" width="24" height="24"/>
     </resources>
 </document>

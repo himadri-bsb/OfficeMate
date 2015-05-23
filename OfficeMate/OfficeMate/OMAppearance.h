@@ -17,4 +17,5 @@
 
 +(UIFont *)appFontWithSize:(CGFloat)size shouldBold:(BOOL)bold;
 
++(void)setUpNavigatioNBarAppearance;
 @end

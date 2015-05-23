@@ -15,6 +15,16 @@
 #import <Parse/Parse.h>
 #import "AppDelegate.h"
 
+@implementation UITabBarController (ChildStatusBarStyle)
+
+- (UIViewController *)childViewControllerForStatusBarStyle
+{
+    return [[(UINavigationController *)[self.viewControllers firstObject] viewControllers] firstObject];
+}
+
+@end
+
+
 @interface OMHomeTableViewController ()<UIActionSheetDelegate>
 
 @property (nonatomic, strong) NSMutableArray *usersArray;
@@ -27,12 +37,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationController.navigationBar.barTintColor = [OMAppearance appThemeColorWithAlpha:1];
-    self.navigationController.navigationBar.tintColor = [OMAppearance appBgColorWithAlpha:1];
     [self setNeedsStatusBarAppearanceUpdate];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleLongPressForCell:) name:kNotification_LongPressTableCell object:nil];
-
+    
+    self.tableView.tableFooterView = [[UIView alloc] init];
     [self refreshData];
 }
 
