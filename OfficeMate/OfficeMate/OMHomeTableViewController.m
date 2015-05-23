@@ -111,4 +111,8 @@
     }];
 }
 
+- (IBAction)refreshAction:(id)sender {
+    [self refreshData];
+}
+
 @end
