@@ -7,6 +7,8 @@
 //
 
 #import "OMSignUpViewConroller.h"
+#import <DigitsKit/DigitsKit.h>
+
 
 @interface OMSignUpViewConroller ()
 
@@ -17,6 +19,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+
+    DGTAuthenticateButton *authenticateButton = [DGTAuthenticateButton buttonWithAuthenticationCompletion:^(DGTSession *session, NSError *error) {
+        // play with Digits session
+        NSLog(@"");
+    }];
+    authenticateButton.center = self.view.center;
+    [self.view addSubview:authenticateButton];
+
 }
 
 - (void)didReceiveMemoryWarning {

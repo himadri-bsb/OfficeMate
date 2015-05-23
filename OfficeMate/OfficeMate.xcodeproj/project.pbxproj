@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26AC2C531B104B95001F9FAD /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26AC2C4F1B104B95001F9FAD /* Fabric.framework */; };
+		26AC2C541B104B95001F9FAD /* DigitsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26AC2C501B104B95001F9FAD /* DigitsKit.framework */; };
+		26AC2C551B104B95001F9FAD /* DigitsKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 26AC2C511B104B95001F9FAD /* DigitsKitResources.bundle */; };
+		26AC2C561B104B95001F9FAD /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26AC2C521B104B95001F9FAD /* TwitterCore.framework */; };
 		D35ED17F1B10409300164ABA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D35ED17E1B10409300164ABA /* main.m */; };
 		D35ED1821B10409300164ABA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D35ED1811B10409300164ABA /* AppDelegate.m */; };
 		D35ED1881B10409300164ABA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D35ED1861B10409300164ABA /* Main.storyboard */; };
@@ -29,6 +33,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		26AC2C4F1B104B95001F9FAD /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		26AC2C501B104B95001F9FAD /* DigitsKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DigitsKit.framework; sourceTree = "<group>"; };
+		26AC2C511B104B95001F9FAD /* DigitsKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DigitsKitResources.bundle; sourceTree = "<group>"; };
+		26AC2C521B104B95001F9FAD /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterCore.framework; sourceTree = "<group>"; };
 		D35ED1791B10409300164ABA /* OfficeMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OfficeMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D35ED17D1B10409300164ABA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D35ED17E1B10409300164ABA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -52,6 +60,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26AC2C531B104B95001F9FAD /* Fabric.framework in Frameworks */,
+				26AC2C561B104B95001F9FAD /* TwitterCore.framework in Frameworks */,
+				26AC2C541B104B95001F9FAD /* DigitsKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +115,10 @@
 		D35ED17C1B10409300164ABA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				26AC2C4F1B104B95001F9FAD /* Fabric.framework */,
+				26AC2C501B104B95001F9FAD /* DigitsKit.framework */,
+				26AC2C511B104B95001F9FAD /* DigitsKitResources.bundle */,
+				26AC2C521B104B95001F9FAD /* TwitterCore.framework */,
 				D35ED17D1B10409300164ABA /* Info.plist */,
 				D35ED17E1B10409300164ABA /* main.m */,
 			);
@@ -137,6 +152,7 @@
 				D35ED1751B10409300164ABA /* Sources */,
 				D35ED1761B10409300164ABA /* Frameworks */,
 				D35ED1771B10409300164ABA /* Resources */,
+				26AC2C4E1B104B4F001F9FAD /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -207,6 +223,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26AC2C551B104B95001F9FAD /* DigitsKitResources.bundle in Resources */,
 				D35ED1881B10409300164ABA /* Main.storyboard in Resources */,
 				D35ED18D1B10409300164ABA /* LaunchScreen.xib in Resources */,
 				D35ED1A91B104A2E00164ABA /* HomeStoryBoard.storyboard in Resources */,
@@ -222,6 +239,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		26AC2C4E1B104B4F001F9FAD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 9ce25925122fc2338397d3557f9fbc283f4d8efa d16bbaa61b11f0d76c582c0b7b3d1a3c61b61c09da149ea1138230be8a0559e1";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D35ED1751B10409300164ABA /* Sources */ = {
@@ -362,6 +395,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/OfficeMate",
+				);
 				INFOPLIST_FILE = OfficeMate/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -374,6 +411,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/OfficeMate",
+				);
 				INFOPLIST_FILE = OfficeMate/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
