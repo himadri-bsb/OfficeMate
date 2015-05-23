@@ -22,7 +22,7 @@
                                     <constraint firstAttribute="width" constant="280" id="Ds2-OG-xBq"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gFn-4O-vcu">
                                 <rect key="frame" x="160" y="258" width="280" height="1"/>
