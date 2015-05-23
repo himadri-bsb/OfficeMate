@@ -10,6 +10,7 @@
 #import "OMUser.h"
 #import <Parse/Parse.h>
 #import <Beaconstac_v_0_9_16/Beaconstac.h>
+#import "OMCommonDefs.h"
 
 @interface  OMModelManager () <BeaconstacDelegate>
 
@@ -62,26 +63,68 @@
 #pragma mark - Beaconstac delegate
 // Tells the delegate a list of beacons in range.
 - (void)beaconstac:(Beaconstac *)beaconstac rangedBeacons:(NSDictionary *)beaconsDictionary {
-    NSLog(@"");
+    NSLog(@"beaconstac:rangedBeacons");
 }
 
 // Tells the delegate that GPS location has been updated.
 - (void)beaconstac:(Beaconstac *)beaconstac didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
-    NSLog(@"");
+    NSLog(@"beaconstac:didUpdateToLocation");
 }
 
 // Tells the delegate about the camped on beacon among available beacons.
 - (void)beaconstac:(Beaconstac*)beaconstac campedOnBeacon:(MSBeacon*)beacon amongstAvailableBeacons:(NSDictionary *)beaconsDictionary {
-    NSLog(@"DemoApp:campedOnBeacon: %@, %@", beacon.beaconKey, beaconsDictionary);
+    NSLog(@"beaconstac: campedOnBeacon: %@, %@", beacon.beaconKey, beaconsDictionary);
 
-    UILocalNotification *notification = [[UILocalNotification alloc] init];
-    notification.alertBody = [NSString stringWithFormat:@"Camped on to Beacon: %@, %@", beacon.major, beacon.minor];
-    [[UIApplication sharedApplication]presentLocalNotificationNow:notification];
+    OMUser *currentUser = [[OMModelManager sharedManager] currentUser];
+    if(![PFUser currentUser]) {
+        //User not signed in
+        return;
+    }
+    MSBeacon *campedBeacon = (MSBeacon*)beacon;
+    NSString *location = [[campedBeacon.beaconKey uppercaseString] stringByReplacingOccurrencesOfString:@"B9407F30-F5F8-466E-AFF9-25556B57FE6D:" withString:@""];
+    NSString *exactLocation = location;
+    if([location isEqualToString:@"6616:56252"]) {
+        exactLocation = @"Cafe";
+    }
+    else if([location isEqualToString:@"49201:35267"]){
+        exactLocation = @"Desk";
+    }
+
+
+
+    if(![currentUser.location isEqualToString:exactLocation]) {
+        currentUser.location = exactLocation;
+
+        [currentUser.parseUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if(error) {
+                NSLog(@"beaconstac: campedOnBeacon: ERROR on saving location, error = %@",error);
+            }
+        }];
+    }
 }
 
 // Tells the delegate when the device exits from the camped on beacon range.
 - (void)beaconstac:(Beaconstac*)beaconstac exitedBeacon:(MSBeacon*)beacon {
-    NSLog(@"DemoApp:ExitedBeacon: %@", beacon.beaconKey);
+    NSLog(@"beaconstac:  exitedBeacon:%@", beacon.beaconKey);
+
+    OMUser *currentUser = [[OMModelManager sharedManager] currentUser];
+    if(![PFUser currentUser]) {
+        //User not signed in
+        return;
+    }
+
+
+
+    if(![currentUser.location isEqualToString:UNKNOWN_LOCATION]) {
+        currentUser.location = UNKNOWN_LOCATION;
+
+        [currentUser.parseUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if(error) {
+                NSLog(@"beaconstac: exitedBeacon: ERROR on saving location, error = %@",error);
+            }
+
+        }];
+    }
 }
 
 // Tells the delegate when the device has entered a beacon region

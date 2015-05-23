@@ -52,10 +52,19 @@
                         currentUser.phoneNumber = session.phoneNumber;
                         currentUser.userName = self.nameTextField.text;
                         currentUser.userID = session.userID;
-                        BOOL saved = [currentUser.parseUser save];
-                        if (saved) {
-                            [self handleSuccessfullySignup];
-                        }
+
+                        [currentUser.parseUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                            dispatch_async(dispatch_get_main_queue(), ^ {
+                                if(succeeded) {
+                                    [self handleSuccessfullySignup];
+                                }
+                                else {
+                                    if(error) {
+                                        NSLog(@"setUpDigitButton error on saving daya, error = %@",error);
+                                    }
+                                }
+                            });
+                        }];
                     });
                 }
                 else {
