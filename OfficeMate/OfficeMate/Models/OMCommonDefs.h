@@ -24,5 +24,6 @@
 #define INSTALLATION_USER_ID @"installUserId"
 
 #define kWalkAlertKey @"kWalkAlert"
+#define kNotificationDidUserChangedLocation @"location.update"
 
 #endif

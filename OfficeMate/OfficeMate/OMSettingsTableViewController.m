@@ -110,6 +110,9 @@
     if (!dictionary) {
         dictionary = @{@"Off":@"0"};
     }
+    [[NSUserDefaults standardUserDefaults] setObject:dictionary forKey:kWalkAlertKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
     NSString *optionString = [[dictionary allKeys] firstObject];
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     [cell.detailTextLabel setText:optionString];
@@ -122,8 +125,6 @@
         [cell.detailTextLabel setTextColor:[OMAppearance appThemeColorWithAlpha:1.0f]];
         [[AppDelegate sharedAppDelegate] scheduleLocalNNotification];
     }
-    [[NSUserDefaults standardUserDefaults] setObject:dictionary forKey:kWalkAlertKey];
-    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 @end

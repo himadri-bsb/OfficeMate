@@ -77,6 +77,8 @@
     
     [OMAppearance setUpNavigatioNBarAppearance];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didUpdatedLocation:) name:kNotificationDidUserChangedLocation object:nil];
+    
     return YES;
 }
 
@@ -162,6 +164,21 @@
     [currentInstallation saveInBackground];
 }
 
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+    // Play a sound and show an alert only if the application is active, to avoid doubly notifiying the user.
+    if ([application applicationState] == UIApplicationStateActive) {
+        // Initialize the alert view.
+        if([notification.alertBody containsString:@"Hey, You are sitting at your desk from past"]) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Take a Walk!!"
+                                                            message:[notification alertBody]
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Okey"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    }
+}
+
 #pragma mark - CLLocationManagerDelegate
 - (void)locationManager:(CLLocationManager *)manager didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region {
 
@@ -189,6 +206,10 @@
 
 - (void)cancelNotificationNotification {
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
+}
+
+-(void)didUpdatedLocation:(NSNotification *)notif {
+    [self scheduleLocalNNotification];
 }
 
 @end

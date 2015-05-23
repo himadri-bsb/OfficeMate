@@ -108,6 +108,7 @@
                     }
                 }
             }];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationDidUserChangedLocation object:nil];
         }
 
         [currentUser.parseUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
