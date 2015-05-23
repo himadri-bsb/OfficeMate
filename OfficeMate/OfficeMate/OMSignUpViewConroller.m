@@ -40,7 +40,9 @@
     DGTAuthenticateButton *authenticateButton = [DGTAuthenticateButton buttonWithAuthenticationCompletion:^(DGTSession *session, NSError *error) {
         if(!error) {
             // Show loader
-            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[AppDelegate sharedAppDelegate] showLoader:YES];
+            });
             OMUser *currentUser = [[OMModelManager sharedManager] currentUser];
             currentUser.parseUser.username = session.phoneNumber;
             currentUser.parseUser.password = session.userID;
@@ -56,7 +58,8 @@
                         [currentUser.parseUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                             dispatch_async(dispatch_get_main_queue(), ^ {
                                 if(succeeded) {
-                                    [self handleSuccessfullySignup];
+                                    [[AppDelegate sharedAppDelegate] showLoader:NO];
+                                    [[AppDelegate sharedAppDelegate] handleSignUpCompletion];
                                 }
                                 else {
                                     if(error) {
@@ -84,7 +87,7 @@
                                 [currentUser.parseUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                                     dispatch_async(dispatch_get_main_queue(), ^ {
                                         if(succeeded) {
-                                            [self handleSuccessfullySignup];
+                                            [[AppDelegate sharedAppDelegate] handleSignUpCompletion];
                                         }
                                         else {
                                             if(error) {
@@ -98,6 +101,7 @@
                         else {
                             NSLog(@"Registration Failed!");
                             dispatch_async(dispatch_get_main_queue(), ^{
+                                [[AppDelegate sharedAppDelegate] showLoader:NO];
                                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"Error = %@",error] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
                                 [alertView show];
                             });
@@ -111,6 +115,7 @@
             NSLog(@"Registration Failed!");
             // Show error
             dispatch_async(dispatch_get_main_queue(), ^{
+                [[AppDelegate sharedAppDelegate] showLoader:NO];
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"Error = %@",error] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
                 [alertView show];
             });
@@ -121,7 +126,7 @@
     DGTAppearance *apperance = [[DGTAppearance alloc] init];
     apperance.accentColor = [OMAppearance appThemeColorWithAlpha:1];
     authenticateButton.digitsAppearance = apperance;
-    CGPoint btnPos = CGPointMake(self.view.center.x, CGRectGetHeight(self.view.frame)-300);
+    CGPoint btnPos = CGPointMake(self.view.center.x, self.view.center.y);
     authenticateButton.center = btnPos;
     [authenticateButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
     self.phoneNumberButton = authenticateButton;
@@ -180,36 +185,5 @@
     if([self.nameTextField isFirstResponder]) {
         [self.nameTextField resignFirstResponder];
     }
-}
-
-- (void)handleSuccessfullySignup {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"HomeStoryBoard" bundle:nil];
-    UITabBarController *homeTabBarController = [storyboard instantiateViewControllerWithIdentifier:@"homeTabbar"];
-    [self changeRootViewController:homeTabBarController];
-
-}
-
-- (IBAction)didTapTest:(id)sender {
-    [self handleSuccessfullySignup];
-}
-
-
-// put this in your AppDelegate
-- (void)changeRootViewController:(UIViewController*)viewController {
-    UIWindow *window = [AppDelegate sharedAppDelegate].window;
-    window.rootViewController = viewController;
-    if (!window.rootViewController) {
-        window.rootViewController = viewController;
-        return;
-    }
-    UIView *snapShot = [window snapshotViewAfterScreenUpdates:YES];
-    [viewController.view addSubview:snapShot];
-    window.rootViewController = viewController;
-    [UIView animateWithDuration:0.3 animations:^{
-        snapShot.layer.opacity = 0;
-        snapShot.layer.transform = CATransform3DMakeScale(1.5, 1.5, 1.5);
-    } completion:^(BOOL finished) {
-        [snapShot removeFromSuperview];
-    }];
 }
 @end

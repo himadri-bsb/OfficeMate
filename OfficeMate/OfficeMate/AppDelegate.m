@@ -14,6 +14,7 @@
 #import "OMModelManager.h"
 #import "OMUser.h"
 #import "OMCommonDefs.h"
+#import "SVProgressHUD.h"
 
 @interface AppDelegate () <CLLocationManagerDelegate>
 
@@ -27,6 +28,18 @@
 + (AppDelegate *)sharedAppDelegate
 {
     return  (AppDelegate *)[[UIApplication sharedApplication] delegate];
+}
+
+- (void)showLoader:(BOOL)show {
+    if (show) {
+        [SVProgressHUD setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.9]];
+        [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
+        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeGradient];
+        [SVProgressHUD show];
+    }
+    else {
+        [SVProgressHUD dismiss];
+    }
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -47,7 +60,7 @@
     [self.locationManager startUpdatingLocation];
     
     if ([PFUser currentUser]) {
-        [self showHomescreen];
+        [self showHomescreenWithAnimation:NO];
     }
     else {
         //Show signin
@@ -67,15 +80,30 @@
 
 - (void)showSignInScreen {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UINavigationController *signInNavController = [storyboard instantiateViewControllerWithIdentifier:@"signInNavScreen"];
-    self.window.rootViewController = signInNavController;
+    UIViewController *signInViewController = [storyboard instantiateViewControllerWithIdentifier:@"signupScreen"];
+    self.window.rootViewController = signInViewController;
 }
 
-- (void)showHomescreen {
+- (void)showHomescreenWithAnimation:(BOOL)animated {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"HomeStoryBoard" bundle:nil];
     UITabBarController *homeTabBarController = [storyboard instantiateViewControllerWithIdentifier:@"homeTabbar"];
-    self.window.rootViewController = homeTabBarController;
+    if (animated) {
+        UIView *snapShot = [self.window snapshotViewAfterScreenUpdates:YES];
+        [homeTabBarController.view addSubview:snapShot];
+        self.window.rootViewController = homeTabBarController;
+        [UIView animateWithDuration:0.3 animations:^{
+            snapShot.layer.opacity = 0;
+        } completion:^(BOOL finished) {
+            [snapShot removeFromSuperview];
+        }];
+    }
+    else {
+        self.window.rootViewController = homeTabBarController;
+    }
 }
+
+- (void)handleSignUpCompletion {
+    [self showHomescreenWithAnimation:YES];}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
