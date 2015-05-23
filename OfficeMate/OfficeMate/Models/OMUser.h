@@ -22,5 +22,7 @@ extern NSString * const USER_PHONE_NO;
 @property (nonatomic, copy) NSString *phoneNumber;
 @property (nonatomic, copy) NSString *location;
 
+- (void)setLocationTriggerForUser:(BOOL)setTrigger;
+
 
 @end
