@@ -9,12 +9,14 @@
 #import "OMHomeTableViewController.h"
 #import "OMHomeTableViewCell.h"
 #import "OMAppearance.h"
+#import "OMCommonDefs.h"
 #import "OMUser.h"
 #import "OMModelManager.h"
 #import <Parse/Parse.h>
 
-@interface OMHomeTableViewController ()
+@interface OMHomeTableViewController ()<UIActionSheetDelegate>
 @property (nonatomic, strong) NSMutableArray *usersArray;
+@property (nonatomic, assign) OMHomeTableViewCell *tappedCell;
 @end
 
 @implementation OMHomeTableViewController
@@ -26,7 +28,24 @@
     self.navigationController.navigationBar.tintColor = [OMAppearance appBgColorWithAlpha:1];
     [self setNeedsStatusBarAppearanceUpdate];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleLongPressForCell:) name:kNotification_LongPressTableCell object:nil];
+
+    
     [self refreshData];
+}
+
+- (void)handleLongPressForCell:(NSNotification  *)notification {
+    self.tappedCell = notification.object;
+    [self.tappedCell changeToSelected:YES];
+    UIActionSheet *actionsheet = [[UIActionSheet alloc] initWithTitle:@"Notify?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:nil otherButtonTitles:@"Yes", nil];
+    [actionsheet showInView:self.view];
+}
+
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex != [actionSheet cancelButtonIndex]) {
+        [self.tappedCell changeToSelected:NO];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -52,16 +71,23 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     OMHomeTableViewCell *cell = (OMHomeTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"homeCell" forIndexPath:indexPath];
-
     PFUser *parseUser = [self.usersArray objectAtIndex:indexPath.row];
     NSAssert([parseUser isKindOfClass:[PFUser class]], @"Inavlid object in cellForRowAtIndexPath");
-
+    
     OMUser *user = [[OMUser alloc] initWithPFUser:parseUser];
-
+    
     cell.userInfoLabel.text =[NSString stringWithFormat:@"%@  (%@)",user.userName, user.phoneNumber];
     cell.locationInfoLabel.text = user.location;
+    if ((indexPath.row%2) == 0) {
+        cell.observingIndicator.hidden = NO;
+    }
+    else {
+        cell.observingIndicator.hidden = YES;
+    }
     return cell;
 }
+
+
 
 
 - (void)refreshData {
@@ -83,6 +109,10 @@
             }
         });
     }];
+}
+
+- (IBAction)refreshAction:(id)sender {
+    [self refreshData];
 }
 
 @end

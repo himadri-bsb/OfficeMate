@@ -12,5 +12,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *userInfoLabel;
 @property (weak, nonatomic) IBOutlet UILabel *locationInfoLabel;
+@property (weak, nonatomic) IBOutlet UIView *observingIndicator;
 
+- (void)changeToSelected:(BOOL)selected;
 @end
