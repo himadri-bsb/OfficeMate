@@ -10,6 +10,7 @@
 #import <Fabric/Fabric.h>
 #import <DigitsKit/DigitsKit.h>
 #import <Parse/Parse.h>
+#import "OMAppearance.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +18,11 @@
 
 @implementation AppDelegate
 
+
++ (AppDelegate *)sharedAppDelegate
+{
+    return  (AppDelegate *)[[UIApplication sharedApplication] delegate];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.

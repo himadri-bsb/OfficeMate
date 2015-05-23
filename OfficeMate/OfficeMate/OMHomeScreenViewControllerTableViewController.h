@@ -1,5 +1,5 @@
 //
-//  OMPinViewController.h
+//  OMHomeScreenViewControllerTableViewController.h
 //  OfficeMate
 //
 //  Created by Ravindra Shetty on 23/05/15.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OMPinViewController : UIViewController
+@interface OMHomeScreenViewControllerTableViewController : UITableViewController
 
 @end

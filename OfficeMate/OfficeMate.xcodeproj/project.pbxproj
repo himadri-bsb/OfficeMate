@@ -33,8 +33,10 @@
 		D35ED18D1B10409300164ABA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D35ED18B1B10409300164ABA /* LaunchScreen.xib */; };
 		D35ED1991B10409300164ABA /* OfficeMateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D35ED1981B10409300164ABA /* OfficeMateTests.m */; };
 		D35ED1A41B1049B000164ABA /* OMSignUpViewConroller.m in Sources */ = {isa = PBXBuildFile; fileRef = D35ED1A31B1049B000164ABA /* OMSignUpViewConroller.m */; };
-		D35ED1A71B1049C000164ABA /* OMPinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D35ED1A61B1049C000164ABA /* OMPinViewController.m */; };
 		D35ED1A91B104A2E00164ABA /* HomeStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D35ED1A81B104A2E00164ABA /* HomeStoryBoard.storyboard */; };
+		D35ED1BD1B10715A00164ABA /* OMHomeScreenViewControllerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D35ED1BA1B10715A00164ABA /* OMHomeScreenViewControllerTableViewController.m */; };
+		D35ED1BE1B10715A00164ABA /* OMHomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D35ED1BC1B10715A00164ABA /* OMHomeTableViewCell.m */; };
+		D35ED1C11B1071AC00164ABA /* OMAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = D35ED1C01B1071AC00164ABA /* OMAppearance.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,9 +87,13 @@
 		D35ED1981B10409300164ABA /* OfficeMateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OfficeMateTests.m; sourceTree = "<group>"; };
 		D35ED1A21B1049B000164ABA /* OMSignUpViewConroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMSignUpViewConroller.h; sourceTree = "<group>"; };
 		D35ED1A31B1049B000164ABA /* OMSignUpViewConroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OMSignUpViewConroller.m; sourceTree = "<group>"; };
-		D35ED1A51B1049C000164ABA /* OMPinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMPinViewController.h; sourceTree = "<group>"; };
-		D35ED1A61B1049C000164ABA /* OMPinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OMPinViewController.m; sourceTree = "<group>"; };
 		D35ED1A81B104A2E00164ABA /* HomeStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomeStoryBoard.storyboard; sourceTree = "<group>"; };
+		D35ED1B91B10715A00164ABA /* OMHomeScreenViewControllerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMHomeScreenViewControllerTableViewController.h; sourceTree = "<group>"; };
+		D35ED1BA1B10715A00164ABA /* OMHomeScreenViewControllerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OMHomeScreenViewControllerTableViewController.m; sourceTree = "<group>"; };
+		D35ED1BB1B10715A00164ABA /* OMHomeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMHomeTableViewCell.h; sourceTree = "<group>"; };
+		D35ED1BC1B10715A00164ABA /* OMHomeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OMHomeTableViewCell.m; sourceTree = "<group>"; };
+		D35ED1BF1B1071AC00164ABA /* OMAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMAppearance.h; sourceTree = "<group>"; };
+		D35ED1C01B1071AC00164ABA /* OMAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OMAppearance.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,8 +181,12 @@
 				D35ED1811B10409300164ABA /* AppDelegate.m */,
 				D35ED1A21B1049B000164ABA /* OMSignUpViewConroller.h */,
 				D35ED1A31B1049B000164ABA /* OMSignUpViewConroller.m */,
-				D35ED1A51B1049C000164ABA /* OMPinViewController.h */,
-				D35ED1A61B1049C000164ABA /* OMPinViewController.m */,
+				D35ED1BF1B1071AC00164ABA /* OMAppearance.h */,
+				D35ED1C01B1071AC00164ABA /* OMAppearance.m */,
+				D35ED1B91B10715A00164ABA /* OMHomeScreenViewControllerTableViewController.h */,
+				D35ED1BA1B10715A00164ABA /* OMHomeScreenViewControllerTableViewController.m */,
+				D35ED1BB1B10715A00164ABA /* OMHomeTableViewCell.h */,
+				D35ED1BC1B10715A00164ABA /* OMHomeTableViewCell.m */,
 				D35ED1861B10409300164ABA /* Main.storyboard */,
 				D35ED1A81B104A2E00164ABA /* HomeStoryBoard.storyboard */,
 				D35ED1891B10409300164ABA /* Images.xcassets */,
@@ -345,10 +355,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D35ED1BE1B10715A00164ABA /* OMHomeTableViewCell.m in Sources */,
 				D35ED1A41B1049B000164ABA /* OMSignUpViewConroller.m in Sources */,
+				D35ED1BD1B10715A00164ABA /* OMHomeScreenViewControllerTableViewController.m in Sources */,
 				26AC2C791B10572D001F9FAD /* OMModelManager.m in Sources */,
 				D35ED1821B10409300164ABA /* AppDelegate.m in Sources */,
-				D35ED1A71B1049C000164ABA /* OMPinViewController.m in Sources */,
+				D35ED1C11B1071AC00164ABA /* OMAppearance.m in Sources */,
 				26AC2C7C1B1058DB001F9FAD /* OMUser.m in Sources */,
 				D35ED17F1B10409300164ABA /* main.m in Sources */,
 			);
