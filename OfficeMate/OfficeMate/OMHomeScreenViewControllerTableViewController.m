@@ -8,7 +8,7 @@
 
 #import "OMHomeScreenViewControllerTableViewController.h"
 #import "OMHomeTableViewCell.h"
-
+#import "OMAppearance.h"
 @interface OMHomeScreenViewControllerTableViewController ()
 
 @end
@@ -18,16 +18,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationController.navigationBar.barTintColor = [OMAppearance appThemeColorWithAlpha:1];
+    self.navigationController.navigationBar.tintColor = [OMAppearance appBgColorWithAlpha:1];
+    [self setNeedsStatusBarAppearanceUpdate];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 #pragma mark - Table view data source
