@@ -9,11 +9,13 @@
 /* Begin PBXBuildFile section */
 		D35ED17F1B10409300164ABA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D35ED17E1B10409300164ABA /* main.m */; };
 		D35ED1821B10409300164ABA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D35ED1811B10409300164ABA /* AppDelegate.m */; };
-		D35ED1851B10409300164ABA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D35ED1841B10409300164ABA /* ViewController.m */; };
 		D35ED1881B10409300164ABA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D35ED1861B10409300164ABA /* Main.storyboard */; };
 		D35ED18A1B10409300164ABA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D35ED1891B10409300164ABA /* Images.xcassets */; };
 		D35ED18D1B10409300164ABA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D35ED18B1B10409300164ABA /* LaunchScreen.xib */; };
 		D35ED1991B10409300164ABA /* OfficeMateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D35ED1981B10409300164ABA /* OfficeMateTests.m */; };
+		D35ED1A41B1049B000164ABA /* OMSignUpViewConroller.m in Sources */ = {isa = PBXBuildFile; fileRef = D35ED1A31B1049B000164ABA /* OMSignUpViewConroller.m */; };
+		D35ED1A71B1049C000164ABA /* OMPinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D35ED1A61B1049C000164ABA /* OMPinViewController.m */; };
+		D35ED1A91B104A2E00164ABA /* HomeStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D35ED1A81B104A2E00164ABA /* HomeStoryBoard.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,14 +34,17 @@
 		D35ED17E1B10409300164ABA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D35ED1801B10409300164ABA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D35ED1811B10409300164ABA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		D35ED1831B10409300164ABA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		D35ED1841B10409300164ABA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		D35ED1871B10409300164ABA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D35ED1891B10409300164ABA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D35ED18C1B10409300164ABA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		D35ED1921B10409300164ABA /* OfficeMateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OfficeMateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D35ED1971B10409300164ABA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D35ED1981B10409300164ABA /* OfficeMateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OfficeMateTests.m; sourceTree = "<group>"; };
+		D35ED1A21B1049B000164ABA /* OMSignUpViewConroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMSignUpViewConroller.h; sourceTree = "<group>"; };
+		D35ED1A31B1049B000164ABA /* OMSignUpViewConroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OMSignUpViewConroller.m; sourceTree = "<group>"; };
+		D35ED1A51B1049C000164ABA /* OMPinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMPinViewController.h; sourceTree = "<group>"; };
+		D35ED1A61B1049C000164ABA /* OMPinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OMPinViewController.m; sourceTree = "<group>"; };
+		D35ED1A81B104A2E00164ABA /* HomeStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomeStoryBoard.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,9 +88,12 @@
 			children = (
 				D35ED1801B10409300164ABA /* AppDelegate.h */,
 				D35ED1811B10409300164ABA /* AppDelegate.m */,
-				D35ED1831B10409300164ABA /* ViewController.h */,
-				D35ED1841B10409300164ABA /* ViewController.m */,
+				D35ED1A21B1049B000164ABA /* OMSignUpViewConroller.h */,
+				D35ED1A31B1049B000164ABA /* OMSignUpViewConroller.m */,
+				D35ED1A51B1049C000164ABA /* OMPinViewController.h */,
+				D35ED1A61B1049C000164ABA /* OMPinViewController.m */,
 				D35ED1861B10409300164ABA /* Main.storyboard */,
+				D35ED1A81B104A2E00164ABA /* HomeStoryBoard.storyboard */,
 				D35ED1891B10409300164ABA /* Images.xcassets */,
 				D35ED18B1B10409300164ABA /* LaunchScreen.xib */,
 				D35ED17C1B10409300164ABA /* Supporting Files */,
@@ -201,6 +209,7 @@
 			files = (
 				D35ED1881B10409300164ABA /* Main.storyboard in Resources */,
 				D35ED18D1B10409300164ABA /* LaunchScreen.xib in Resources */,
+				D35ED1A91B104A2E00164ABA /* HomeStoryBoard.storyboard in Resources */,
 				D35ED18A1B10409300164ABA /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,8 +228,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D35ED1851B10409300164ABA /* ViewController.m in Sources */,
+				D35ED1A41B1049B000164ABA /* OMSignUpViewConroller.m in Sources */,
 				D35ED1821B10409300164ABA /* AppDelegate.m in Sources */,
+				D35ED1A71B1049C000164ABA /* OMPinViewController.m in Sources */,
 				D35ED17F1B10409300164ABA /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
