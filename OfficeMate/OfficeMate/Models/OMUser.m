@@ -16,7 +16,6 @@ static NSString * const LOC_TRIGGER = @"loctrigger";
 
 @interface OMUser ()
 
-@property (nonatomic, strong)PFUser *parseUser;
 
 @end
 

@@ -15,7 +15,7 @@ extern NSString * const USER_PHONE_NO;
 
 - (instancetype)initWithPFUser:(PFUser*)parseUser;
 
-@property (nonatomic, readonly)PFUser *parseUser;
+@property (nonatomic, strong)PFUser *parseUser;
 
 @property (nonatomic, copy) NSString *userName;
 @property (nonatomic, copy) NSString *userID;
