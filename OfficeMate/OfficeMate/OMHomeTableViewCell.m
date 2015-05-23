@@ -46,15 +46,6 @@
     }
 }
 
-- (void)changeToSelected:(BOOL)selected {
-    if (selected) {
-        [self.contentView setBackgroundColor:[UIColor lightGrayColor]];
-    }
-    else {
-        [self.contentView setBackgroundColor:[UIColor whiteColor]];
-    }
-}
-
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
     [super setHighlighted:highlighted animated:animated];
     if (highlighted) {

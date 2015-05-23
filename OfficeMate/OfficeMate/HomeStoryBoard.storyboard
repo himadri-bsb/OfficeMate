@@ -40,7 +40,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bix-VQ-vQj">
-                                            <rect key="frame" x="72" y="14" width="435" height="20"/>
+                                            <rect key="frame" x="72" y="14" width="510" height="20"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -54,7 +54,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MuW-8d-cRj">
-                                            <rect key="frame" x="72" y="39" width="427" height="18"/>
+                                            <rect key="frame" x="72" y="39" width="510" height="18"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -69,10 +69,10 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="MuW-8d-cRj" firstAttribute="top" secondItem="Bix-VQ-vQj" secondAttribute="bottom" constant="5" id="4La-pj-Ee0"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="Bix-VQ-vQj" secondAttribute="trailing" constant="85" id="FKE-Fr-qk7"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Bix-VQ-vQj" secondAttribute="trailing" constant="10" id="FKE-Fr-qk7"/>
                                         <constraint firstAttribute="trailing" secondItem="8zA-LK-nkn" secondAttribute="trailing" id="Gu2-lh-Ra6"/>
                                         <constraint firstAttribute="bottom" secondItem="8zA-LK-nkn" secondAttribute="bottom" id="P9U-gq-Uau"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="MuW-8d-cRj" secondAttribute="trailing" constant="93" id="QGh-2T-PMS"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="MuW-8d-cRj" secondAttribute="trailing" constant="10" id="QGh-2T-PMS"/>
                                         <constraint firstItem="Bix-VQ-vQj" firstAttribute="leading" secondItem="gpo-ko-r5T" secondAttribute="trailing" constant="10" id="Sk7-hZ-zXR"/>
                                         <constraint firstItem="MuW-8d-cRj" firstAttribute="leading" secondItem="gpo-ko-r5T" secondAttribute="trailing" constant="10" id="gPb-69-ekX"/>
                                         <constraint firstItem="gpo-ko-r5T" firstAttribute="leading" secondItem="Rc0-j3-Bbt" secondAttribute="leadingMargin" id="hyY-lj-xic"/>

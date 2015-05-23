@@ -13,6 +13,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *userInfoLabel;
 @property (weak, nonatomic) IBOutlet UILabel *locationInfoLabel;
 @property (weak, nonatomic) IBOutlet UIView *observingIndicator;
-
-- (void)changeToSelected:(BOOL)selected;
+@property (nonatomic, assign) BOOL isObserving;
 @end
