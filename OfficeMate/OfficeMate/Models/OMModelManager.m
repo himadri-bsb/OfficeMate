@@ -45,7 +45,7 @@
 }
 
 - (void)initializeBeaconStac {
-    [[MSLogger sharedInstance]setLoglevel:MSLogLevelVerbose];
+    [[MSLogger sharedInstance]setLoglevel:MSLogLevelNone];
 
     /*
      * Setup and initialize the Beaconstac SDK
@@ -63,17 +63,17 @@
 #pragma mark - Beaconstac delegate
 // Tells the delegate a list of beacons in range.
 - (void)beaconstac:(Beaconstac *)beaconstac rangedBeacons:(NSDictionary *)beaconsDictionary {
-    NSLog(@"beaconstac:rangedBeacons");
+    //NSLog(@"beaconstac:rangedBeacons");
 }
 
 // Tells the delegate that GPS location has been updated.
 - (void)beaconstac:(Beaconstac *)beaconstac didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
-    NSLog(@"beaconstac:didUpdateToLocation");
+    //NSLog(@"beaconstac:didUpdateToLocation");
 }
 
 // Tells the delegate about the camped on beacon among available beacons.
 - (void)beaconstac:(Beaconstac*)beaconstac campedOnBeacon:(MSBeacon*)beacon amongstAvailableBeacons:(NSDictionary *)beaconsDictionary {
-    NSLog(@"beaconstac: campedOnBeacon: %@, %@", beacon.beaconKey, beaconsDictionary);
+    //NSLog(@"beaconstac: campedOnBeacon: %@, %@", beacon.beaconKey, beaconsDictionary);
 
     OMUser *currentUser = [[OMModelManager sharedManager] currentUser];
     if(![PFUser currentUser]) {
@@ -85,9 +85,11 @@
     NSString *exactLocation = UNKNOWN_LOCATION;
     if([location isEqualToString:@"6616:56252"]) {
         exactLocation = @"Cafeteria";
+        NSLog(@"Camped on CAFE");
     }
     else if([location isEqualToString:@"49201:35267"]){
         exactLocation = @"Desk";
+        NSLog(@"Camped on DESK");
     }
 
 
@@ -121,12 +123,24 @@
 
 // Tells the delegate when the device exits from the camped on beacon range.
 - (void)beaconstac:(Beaconstac*)beaconstac exitedBeacon:(MSBeacon*)beacon {
-    NSLog(@"beaconstac:  exitedBeacon:%@", beacon.beaconKey);
+    //NSLog(@"beaconstac:  exitedBeacon:%@", beacon.beaconKey);
 
     OMUser *currentUser = [[OMModelManager sharedManager] currentUser];
     if(![PFUser currentUser]) {
         //User not signed in
         return;
+    }
+
+    MSBeacon *campedBeacon = (MSBeacon*)beacon;
+    NSString *location = [[campedBeacon.beaconKey uppercaseString] stringByReplacingOccurrencesOfString:@"B9407F30-F5F8-466E-AFF9-25556B57FE6D:" withString:@""];
+    NSString *exactLocation = UNKNOWN_LOCATION;
+    if([location isEqualToString:@"6616:56252"]) {
+        exactLocation = @"Cafeteria";
+        NSLog(@"Exited on CAFE");
+    }
+    else if([location isEqualToString:@"49201:35267"]){
+        exactLocation = @"Desk";
+        NSLog(@"Exited on DESK");
     }
 
 
