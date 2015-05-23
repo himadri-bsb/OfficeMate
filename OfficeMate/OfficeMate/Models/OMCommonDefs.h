@@ -23,5 +23,6 @@
 
 #define INSTALLATION_USER_ID @"installUserId"
 
+#define kWalkAlertKey @"kWalkAlert"
 
 #endif

@@ -15,5 +15,7 @@
 + (AppDelegate *)sharedAppDelegate;
 - (void)showLoader:(BOOL)show;
 - (void)handleSignUpCompletion;
+- (void)scheduleLocalNNotification;
+- (void)cancelNotificationNotification;
 @end
 

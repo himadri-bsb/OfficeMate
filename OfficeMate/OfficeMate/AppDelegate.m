@@ -167,4 +167,28 @@
 
 }
 
+- (void)scheduleLocalNNotification {
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    
+    UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+    
+    NSDictionary *alertValue = [[NSUserDefaults standardUserDefaults] valueForKey:kWalkAlertKey];
+
+    NSTimeInterval interval = [[[alertValue allValues] firstObject] floatValue];//*60;
+    // current time plus 10 secs
+    NSDate *now = [NSDate date];
+    NSDate *dateToFire = [now dateByAddingTimeInterval:interval];
+    
+    localNotification.fireDate = dateToFire;
+    localNotification.alertBody = [NSString stringWithFormat:@"Hey, You are sitting at your desk from past %.0f mins! Get up and take some walk.",interval];
+    localNotification.soundName = UILocalNotificationDefaultSoundName;
+    localNotification.applicationIconBadgeNumber = 1;
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+}
+
+- (void)cancelNotificationNotification {
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+}
+
 @end
