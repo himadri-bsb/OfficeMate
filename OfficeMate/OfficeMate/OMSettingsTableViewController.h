@@ -1,5 +1,5 @@
 //
-//  OMHomeScreenViewControllerTableViewController.h
+//  OMSettingsTableViewController.h
 //  OfficeMate
 //
 //  Created by Ravindra Shetty on 23/05/15.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OMHomeScreenViewControllerTableViewController : UITableViewController
+@interface OMSettingsTableViewController : UITableViewController
 
 @end

@@ -33,7 +33,11 @@
 
 -(instancetype)init {
     if(self = [super init]) {
-        self.currentUser = [[OMUser alloc] initWithPFUser:[PFUser currentUser]];
+        PFUser *parseUser = [PFUser currentUser];
+        if (!parseUser) {
+            parseUser = [PFUser user];
+        }
+        self.currentUser = [[OMUser alloc] initWithPFUser:parseUser];
     }
 
     return self;

@@ -10,7 +10,9 @@
 #import <DigitsKit/DigitsKit.h>
 #import "OMAppearance.h"
 #import "AppDelegate.h"
-
+#import "OMModelManager.h"
+#import "OMUser.h"
+#import <Parse/Parse.h>
 
 @interface OMSignUpViewConroller () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
@@ -36,8 +38,44 @@
 
 - (void)setUpDigitButton {
     DGTAuthenticateButton *authenticateButton = [DGTAuthenticateButton buttonWithAuthenticationCompletion:^(DGTSession *session, NSError *error) {
-        // play with Digits session
-        NSLog(@"");
+        if(!error) {
+            // Show loader
+            
+            OMUser *currentUser = [[OMModelManager sharedManager] currentUser];
+            currentUser.parseUser.username = session.phoneNumber;
+            currentUser.parseUser.password = session.userID;
+            //Handle Parse login
+            [currentUser.parseUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (!error) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        NSLog(@"Registration success!");
+                        currentUser.phoneNumber = session.phoneNumber;
+                        currentUser.userName = self.nameTextField.text;
+                        currentUser.userID = session.userID;
+                        BOOL saved = [currentUser.parseUser save];
+                        if (saved) {
+                            [self handleSuccessfullySignup];
+                        }
+                    });
+                }
+                else {
+                    NSLog(@"Registration Failed!");
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"Error = %@",error] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                        [alertView show];
+                    });
+                }
+            }];
+        }
+        else {
+            NSLog(@"Registration Failed!");
+            // Show error
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"Error = %@",error] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                [alertView show];
+            });
+        }
+        
     }];
     
     DGTAppearance *apperance = [[DGTAppearance alloc] init];
@@ -104,11 +142,17 @@
     }
 }
 
-- (IBAction)didTapTest:(id)sender {
+- (void)handleSuccessfullySignup {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"HomeStoryBoard" bundle:nil];
     UITabBarController *homeTabBarController = [storyboard instantiateViewControllerWithIdentifier:@"homeTabbar"];
     [self changeRootViewController:homeTabBarController];
+
 }
+
+- (IBAction)didTapTest:(id)sender {
+    [self handleSuccessfullySignup];
+}
+
 
 // put this in your AppDelegate
 - (void)changeRootViewController:(UIViewController*)viewController {

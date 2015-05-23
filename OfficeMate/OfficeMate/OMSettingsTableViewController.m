@@ -1,26 +1,42 @@
 //
-//  OMHomeScreenViewControllerTableViewController.m
+//  OMSettingsTableViewController.m
 //  OfficeMate
 //
 //  Created by Ravindra Shetty on 23/05/15.
 //  Copyright (c) 2015 Ravindra Shetty. All rights reserved.
 //
 
-#import "OMHomeScreenViewControllerTableViewController.h"
-#import "OMHomeTableViewCell.h"
-#import "OMAppearance.h"
-@interface OMHomeScreenViewControllerTableViewController ()
+#import "OMSettingsTableViewController.h"
+#import "OMUser.h"
+#import "OMModelManager.h"
+#import <Parse/Parse.h>
+
+@interface OMSettingsTableViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *nameField;
+@property (weak, nonatomic) IBOutlet UILabel *phonenumberLable;
+@property (weak, nonatomic) IBOutlet UILabel *lastseenLabel;
 
 @end
 
-@implementation OMHomeScreenViewControllerTableViewController
+@implementation OMSettingsTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationController.navigationBar.barTintColor = [OMAppearance appThemeColorWithAlpha:1];
-    self.navigationController.navigationBar.tintColor = [OMAppearance appBgColorWithAlpha:1];
-    [self setNeedsStatusBarAppearanceUpdate];
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
+    
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self loadUI];
+}
+
+- (void)loadUI {
+    OMUser *currentUser = [[OMModelManager sharedManager] currentUser];
+    self.nameField.text = currentUser.userName;
+    self.phonenumberLable.text = currentUser.phoneNumber;
+    //Have to fetch
+    self.lastseenLabel.text = @"";
 }
 
 - (void)didReceiveMemoryWarning {
@@ -28,29 +44,27 @@
     // Dispose of any resources that can be recreated.
 }
 
+//#pragma mark - Table view data source
+//
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+//    return 0;
+//}
+//
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+//#warning Incomplete method implementation.
+//    // Return the number of rows in the section.
+//    return 0;
+//}
 
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
-}
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
-}
-
-
+/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    OMHomeTableViewCell *cell = (OMHomeTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"homeCell" forIndexPath:indexPath];
-    cell.nameLable.text = @"Name";
-    cell.timestampLabel.text = @"timestamp";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    
+    // Configure the cell...
+    
     return cell;
 }
-
+*/
 
 /*
 // Override to support conditional editing of the table view.

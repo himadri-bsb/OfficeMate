@@ -12,6 +12,7 @@
 #import <Parse/Parse.h>
 #import "OMAppearance.h"
 #import "OMModelManager.h"
+#import "OMUser.h"
 
 @interface AppDelegate () <CLLocationManagerDelegate>
 
@@ -43,7 +44,27 @@
     self.locationManager.delegate = self;
     [self.locationManager startUpdatingLocation];
     
+    if ([PFUser currentUser]) {
+        [self showHomescreen];
+    }
+    else {
+        //Show signin
+        [self showSignInScreen];
+    }
+    
     return YES;
+}
+
+- (void)showSignInScreen {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UINavigationController *signInNavController = [storyboard instantiateViewControllerWithIdentifier:@"signInNavScreen"];
+    self.window.rootViewController = signInNavController;
+}
+
+- (void)showHomescreen {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"HomeStoryBoard" bundle:nil];
+    UITabBarController *homeTabBarController = [storyboard instantiateViewControllerWithIdentifier:@"homeTabbar"];
+    self.window.rootViewController = homeTabBarController;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
