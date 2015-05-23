@@ -84,7 +84,7 @@
     NSString *location = [[campedBeacon.beaconKey uppercaseString] stringByReplacingOccurrencesOfString:@"B9407F30-F5F8-466E-AFF9-25556B57FE6D:" withString:@""];
     NSString *exactLocation = UNKNOWN_LOCATION;
     if([location isEqualToString:@"6616:56252"]) {
-        exactLocation = @"Cafe";
+        exactLocation = @"Cafeteria";
     }
     else if([location isEqualToString:@"49201:35267"]){
         exactLocation = @"Desk";
