@@ -68,11 +68,42 @@
                     });
                 }
                 else {
-                    NSLog(@"Registration Failed!");
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"Error = %@",error] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-                        [alertView show];
-                    });
+                    //Signup failed, try logging in
+                    [PFUser logInWithUsernameInBackground:session.phoneNumber
+                                                                password:session.userID
+                                                                   block:^(PFUser *user, NSError *error) {
+                        if(user) {
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                NSLog(@"Registration success!");
+                                currentUser.parseUser = user;
+                                currentUser.phoneNumber = session.phoneNumber;
+                                currentUser.userName = self.nameTextField.text;
+                                currentUser.userID = session.userID;
+
+
+                                [currentUser.parseUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                                    dispatch_async(dispatch_get_main_queue(), ^ {
+                                        if(succeeded) {
+                                            [self handleSuccessfullySignup];
+                                        }
+                                        else {
+                                            if(error) {
+                                                NSLog(@"setUpDigitButton error on saving daya, error = %@",error);
+                                            }
+                                        }
+                                    });
+                                }];
+                            });
+                        }
+                        else {
+                            NSLog(@"Registration Failed!");
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"Error = %@",error] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                                [alertView show];
+                            });
+                        }
+
+                    }];
                 }
             }];
         }

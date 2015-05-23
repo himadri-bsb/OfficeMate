@@ -16,7 +16,6 @@ static NSString * const LOC_TRIGGER = @"loctrigger";
 
 @interface OMUser ()
 
-@property (nonatomic, strong)PFUser *parseUser;
 
 @end
 
@@ -61,11 +60,6 @@ static NSString * const LOC_TRIGGER = @"loctrigger";
  - (NSString*)location {
      return [self.parseUser objectForKey:USER_LOCATION_KEY];
  }
-
-- (void)setLocationTriggerForUser:(BOOL)setTrigger {
-    [self.parseUser setObject:@(setTrigger) forKeyedSubscript:LOC_TRIGGER];
-    [self.parseUser saveInBackground];
-}
 
 
 @end
