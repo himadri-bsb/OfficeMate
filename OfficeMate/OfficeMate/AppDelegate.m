@@ -11,8 +11,11 @@
 #import <DigitsKit/DigitsKit.h>
 #import <Parse/Parse.h>
 #import "OMAppearance.h"
+#import "OMModelManager.h"
 
-@interface AppDelegate ()
+@interface AppDelegate () <CLLocationManagerDelegate>
+
+@property (strong, nonatomic) CLLocationManager *locationManager;
 
 @end
 
@@ -33,6 +36,12 @@
     //Parse
     [Parse setApplicationId:@"dv11KZfycI8fr3pIFaJYIzoS0kvxxVVfARjko9oy"
                   clientKey:@"lJLHnb0K81fxhWQ7hexYIIlLLGEiCH1r0qlIZvnw"];
+
+    [[OMModelManager sharedManager] initializeBeaconStac];
+
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    [self.locationManager startUpdatingLocation];
     
     return YES;
 }
@@ -57,6 +66,11 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - CLLocationManagerDelegate
+- (void)locationManager:(CLLocationManager *)manager didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region {
+
 }
 
 @end

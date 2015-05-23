@@ -13,6 +13,7 @@
 @interface OMModelManager : NSObject
 
 + (OMModelManager *)sharedManager;
+- (void)initializeBeaconStac;
 
 @property (nonatomic, strong, readonly) OMUser *currentUser;
 
