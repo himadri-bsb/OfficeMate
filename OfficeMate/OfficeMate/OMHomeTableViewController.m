@@ -35,16 +35,31 @@
 }
 
 - (void)handleLongPressForCell:(NSNotification  *)notification {
-    self.tappedCell = notification.object;
-    [self.tappedCell changeToSelected:YES];
-    UIActionSheet *actionsheet = [[UIActionSheet alloc] initWithTitle:@"Notify?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:nil otherButtonTitles:@"Yes", nil];
-    [actionsheet showInView:self.view];
+    if ([self.tappedCell.locationInfoLabel.text isEqualToString:UNKNOWN_LOCATION]) {
+        self.tappedCell = notification.object;
+        if (!self.tappedCell.isObserving) {
+            UIActionSheet *actionsheet = [[UIActionSheet alloc] initWithTitle:@"Notify?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:nil otherButtonTitles:@"Yes", nil];
+            [actionsheet showInView:self.view];
+        }
+        else {
+            UIActionSheet *actionsheet = [[UIActionSheet alloc] initWithTitle:@"Remove Observer?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:nil otherButtonTitles:@"Yes", nil];
+            [actionsheet showInView:self.view];
+        }
+    }
 }
 
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex != [actionSheet cancelButtonIndex]) {
-        [self.tappedCell changeToSelected:NO];
+        if (self.tappedCell.isObserving) {
+            self.tappedCell.isObserving = NO;
+            self.tappedCell.observingIndicator.hidden = YES;
+        }
+        else {
+            self.tappedCell.isObserving = YES;
+            self.tappedCell.observingIndicator.hidden = NO;
+        }
+        
     }
 }
 
@@ -78,7 +93,7 @@
     
     cell.userInfoLabel.text =[NSString stringWithFormat:@"%@  (%@)",user.userName, user.phoneNumber];
     cell.locationInfoLabel.text = user.location;
-    if ((indexPath.row%2) == 0) {
+    if (cell.isObserving) {
         cell.observingIndicator.hidden = NO;
     }
     else {

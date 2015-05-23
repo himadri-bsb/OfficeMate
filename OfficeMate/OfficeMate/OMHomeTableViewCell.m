@@ -46,8 +46,9 @@
     }
 }
 
-- (void)changeToSelected:(BOOL)selected {
-    if (selected) {
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
+    [super setHighlighted:highlighted animated:animated];
+    if (highlighted) {
         [self.contentView setBackgroundColor:[UIColor lightGrayColor]];
     }
     else {
@@ -55,9 +56,9 @@
     }
 }
 
-- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
-    [super setHighlighted:highlighted animated:animated];
-    if (highlighted) {
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+    if (selected) {
         [self.contentView setBackgroundColor:[UIColor lightGrayColor]];
     }
     else {
