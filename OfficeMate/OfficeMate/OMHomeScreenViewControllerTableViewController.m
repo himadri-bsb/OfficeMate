@@ -9,8 +9,12 @@
 #import "OMHomeScreenViewControllerTableViewController.h"
 #import "OMHomeTableViewCell.h"
 #import "OMAppearance.h"
-@interface OMHomeScreenViewControllerTableViewController ()
+#import "OMUser.h"
+#import "OMModelManager.h"
+#import <Parse/Parse.h>
 
+@interface OMHomeScreenViewControllerTableViewController ()
+@property (nonatomic, strong) NSMutableArray *usersArray;
 @end
 
 @implementation OMHomeScreenViewControllerTableViewController
@@ -21,6 +25,8 @@
     self.navigationController.navigationBar.barTintColor = [OMAppearance appThemeColorWithAlpha:1];
     self.navigationController.navigationBar.tintColor = [OMAppearance appBgColorWithAlpha:1];
     [self setNeedsStatusBarAppearanceUpdate];
+    
+    [self refreshData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,7 +46,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return self.usersArray.count;
 }
 
 
@@ -95,5 +101,27 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+- (void)refreshData {
+    OMUser *currentUser = [[OMModelManager sharedManager] currentUser];
+    PFQuery *query = [PFUser query];
+    [query whereKey:@"username" notEqualTo:currentUser.parseUser.username];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (!error) {
+                // The find succeeded. The first 100 objects are available in objects
+                NSLog(@"%@", objects);
+                self.usersArray = [NSMutableArray arrayWithArray:objects];
+                [self.tableView reloadData];
+            } else {
+                // Log details of the failure
+                //NSLog(@"Error: %@ %@", error, [error userInfo]);
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Refresh Error" message:[NSString stringWithFormat:@"Error = %@",error] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                [alertView show];
+            }
+        });
+    }];
+}
 
 @end

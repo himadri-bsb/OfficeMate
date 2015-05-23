@@ -8,10 +8,10 @@
 
 #import "OMUser.h"
 
-static NSString * const USER_NAME_KEY = @"omuser.name";
-static NSString * const USER_LOCATION_KEY = @"omuser.location";
-static NSString * const USER_ID_KEY = @"omuser.id";
-NSString * const USER_PHONE_NO = @"omuser.phoneno";
+static NSString * const USER_NAME_KEY = @"name";
+static NSString * const USER_LOCATION_KEY = @"location";
+static NSString * const USER_ID_KEY = @"userid";
+NSString * const USER_PHONE_NO = @"phoneno";
 
 @interface OMUser ()
 
