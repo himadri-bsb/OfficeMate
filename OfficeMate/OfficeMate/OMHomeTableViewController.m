@@ -13,6 +13,7 @@
 #import "OMUser.h"
 #import "OMModelManager.h"
 #import <Parse/Parse.h>
+#import "AppDelegate.h"
 
 @interface OMHomeTableViewController ()<UIActionSheetDelegate>
 
@@ -32,7 +33,6 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleLongPressForCell:) name:kNotification_LongPressTableCell object:nil];
 
-    
     [self refreshData];
 }
 
@@ -116,6 +116,7 @@
 
 
 - (void)refreshData {
+    [[AppDelegate sharedAppDelegate] showLoader:YES];
     OMUser *currentUser = [[OMModelManager sharedManager] currentUser];
     PFQuery *query = [PFUser query];
     [query whereKey:@"username" notEqualTo:currentUser.parseUser.username];
@@ -132,22 +133,13 @@
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Refresh Error" message:[NSString stringWithFormat:@"Error = %@",error] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
                 [alertView show];
             }
+            [[AppDelegate sharedAppDelegate] showLoader:NO];
         });
     }];
 }
 
 - (IBAction)refreshAction:(id)sender {
    [self refreshData];
-
-    /*
-     Hard coded push sending
-    PFQuery *pushQuery = [PFInstallation query];
-    [pushQuery whereKey:INSTALLATION_USER_ID equalTo:@"CaZANpFSeq"];
-
-    // Send push notification to query
-    [PFPush sendPushMessageToQueryInBackground:pushQuery
-                                   withMessage:@"Hello World1"];
-     */
 }
 
 - (void)setLocationTriggerForUserNumber:(NSString*)msisdn enable:(BOOL)enable {
