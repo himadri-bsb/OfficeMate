@@ -37,6 +37,7 @@
     //Parse
     [Parse setApplicationId:@"dv11KZfycI8fr3pIFaJYIzoS0kvxxVVfARjko9oy"
                   clientKey:@"lJLHnb0K81fxhWQ7hexYIIlLLGEiCH1r0qlIZvnw"];
+    //[PFUser enableRevocableSessionInBackground];
 
     [[OMModelManager sharedManager] initializeBeaconStac];
 
