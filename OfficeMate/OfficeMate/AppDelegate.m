@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import <Fabric/Fabric.h>
 #import <DigitsKit/DigitsKit.h>
-
+#import <Parse/Parse.h>
 
 @interface AppDelegate ()
 
@@ -21,7 +21,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 
+    //Digits
     [Fabric with:@[DigitsKit]];
+
+    //Parse
+    [Parse setApplicationId:@"dv11KZfycI8fr3pIFaJYIzoS0kvxxVVfARjko9oy"
+                  clientKey:@"lJLHnb0K81fxhWQ7hexYIIlLLGEiCH1r0qlIZvnw"];
     
     return YES;
 }
