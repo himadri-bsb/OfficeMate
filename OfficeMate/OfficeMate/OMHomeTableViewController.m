@@ -112,6 +112,12 @@
     
     cell.userInfoLabel.text =[NSString stringWithFormat:@"%@  (%@)",user.userName, user.phoneNumber];
     cell.locationInfoLabel.text = user.location;
+    if ((indexPath.row % 2) == 0) {
+        cell.avatarImageView.image = [UIImage imageNamed:@"avatar"];
+    }
+    else {
+        cell.avatarImageView.image = [UIImage imageNamed:@"avatar1"];
+    }
     if (cell.isObserving) {
         cell.observingIndicator.hidden = NO;
     }

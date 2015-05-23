@@ -10,6 +10,8 @@
 #import "OMAppearance.h"
 #import "OMCommonDefs.h"
 
+#define COLOR_BACKGROUND_SELECTED [UIColor colorWithRed:231.0f/255.0f green:231.0f/255.0f blue:231.0f/255.0f alpha:1]
+
 @implementation OMHomeTableViewCell
 
 
@@ -49,7 +51,7 @@
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
     [super setHighlighted:highlighted animated:animated];
     if (highlighted) {
-        [self.contentView setBackgroundColor:[UIColor lightGrayColor]];
+        [self.contentView setBackgroundColor:COLOR_BACKGROUND_SELECTED];
     }
     else {
         [self.contentView setBackgroundColor:[UIColor whiteColor]];
@@ -59,7 +61,7 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
     if (selected) {
-        [self.contentView setBackgroundColor:[UIColor lightGrayColor]];
+        [self.contentView setBackgroundColor:COLOR_BACKGROUND_SELECTED];
     }
     else {
         [self.contentView setBackgroundColor:[UIColor whiteColor]];
