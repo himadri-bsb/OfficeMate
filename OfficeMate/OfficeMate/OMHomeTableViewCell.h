@@ -10,7 +10,7 @@
 
 @interface OMHomeTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
-@property (weak, nonatomic) IBOutlet UILabel *nameLable;
-@property (weak, nonatomic) IBOutlet UILabel *timestampLabel;
+@property (weak, nonatomic) IBOutlet UILabel *userInfoLabel;
+@property (weak, nonatomic) IBOutlet UILabel *locationInfoLabel;
 
 @end

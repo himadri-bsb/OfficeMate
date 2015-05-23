@@ -54,8 +54,8 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MuW-8d-cRj">
-                                            <rect key="frame" x="72" y="39" width="394" height="15.5"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                            <rect key="frame" x="72" y="39" width="394" height="17.5"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -73,8 +73,8 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="avatarImageView" destination="gpo-ko-r5T" id="NI2-9v-O2Q"/>
-                                    <outlet property="nameLable" destination="Bix-VQ-vQj" id="sDi-di-wpx"/>
-                                    <outlet property="timestampLabel" destination="MuW-8d-cRj" id="YyS-Rj-hmj"/>
+                                    <outlet property="locationInfoLabel" destination="MuW-8d-cRj" id="G5B-7s-C27"/>
+                                    <outlet property="userInfoLabel" destination="Bix-VQ-vQj" id="LBn-VI-g7H"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

@@ -46,14 +46,14 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.usersArray.count;
+    return 10;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     OMHomeTableViewCell *cell = (OMHomeTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"homeCell" forIndexPath:indexPath];
-    cell.nameLable.text = @"Name";
-    cell.timestampLabel.text = @"timestamp";
+    cell.userInfoLabel.text = @"Name(PhoneNUmber)";
+    cell.locationInfoLabel.text = @"location info";
     return cell;
 }
 
