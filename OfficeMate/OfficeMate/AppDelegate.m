@@ -212,7 +212,9 @@
 }
 
 - (void)cancelNotificationNotification {
-    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    if (self.takeWalkNotif) {
+        [[UIApplication sharedApplication] cancelLocalNotification:self.takeWalkNotif];
+    }
 }
 
 -(void)didUpdatedLocation:(NSNotification *)notif {

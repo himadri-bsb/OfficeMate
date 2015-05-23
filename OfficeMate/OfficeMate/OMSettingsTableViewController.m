@@ -59,6 +59,14 @@
         [[AppDelegate sharedAppDelegate].window addSubview:self.durationPickerView];
     }
     [self showPicker:YES];
+    
+    NSDictionary *alertValue = [[NSUserDefaults standardUserDefaults] valueForKey:kWalkAlertKey];
+    if (!alertValue) {
+        [self.durationPickerView selectRow:0 inComponent:0 animated:NO];
+    }
+    else {
+        [self.durationPickerView selectRow:[self.pickerViewDataSource indexOfObject:alertValue] inComponent:0 animated:NO];
+    }
 }
 
 - (void)showPicker:(BOOL)show {
