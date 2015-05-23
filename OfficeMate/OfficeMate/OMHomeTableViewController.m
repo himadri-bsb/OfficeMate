@@ -135,7 +135,15 @@
 }
 
 - (IBAction)refreshAction:(id)sender {
-    [self refreshData];
+    // TEst Code
+    PFQuery *pushQuery = [PFInstallation query];
+    [pushQuery whereKey:@"deviceType" equalTo:@"ios"];
+    
+    // Send push notification to query
+    [PFPush sendPushMessageToQueryInBackground:pushQuery
+                                   withMessage:@"Hello World!"];
+    
+   // [self refreshData];
 
 
     /*
