@@ -8,8 +8,6 @@
 
 #ifndef OfficeMate_OMCommonDefs_h
 #define OfficeMate_OMCommonDefs_h
-
 #define UNKNOWN_LOCATION @"Unknown Location"
-
-
+#define kNotification_LongPressTableCell @"cell.longpressAction"
 #endif
