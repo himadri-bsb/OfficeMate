@@ -112,11 +112,11 @@
     
     cell.userInfoLabel.text =[NSString stringWithFormat:@"%@  (%@)",user.userName, user.phoneNumber];
     cell.locationInfoLabel.text = user.location;
-    if ((indexPath.row % 2) == 0) {
-        cell.avatarImageView.image = [UIImage imageNamed:@"avatar"];
+    if ([user.phoneNumber isEqualToString:@"+919742496072"] || [user.phoneNumber isEqualToString:@"+917795189039"]) {
+        cell.avatarImageView.image = [UIImage imageNamed:@"avatar_female"];
     }
     else {
-        cell.avatarImageView.image = [UIImage imageNamed:@"avatar1"];
+        cell.avatarImageView.image = [UIImage imageNamed:@"avatar"];
     }
     if (cell.isObserving) {
         cell.observingIndicator.hidden = NO;

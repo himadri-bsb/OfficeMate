@@ -85,6 +85,7 @@
 - (NSArray *)pickerViewDataSource {
     if (!_pickerViewDataSource) {
         _pickerViewDataSource = @[@{@"Off":@"0"},
+                                  @{@"10 seconds":@"0.167"},
                                   @{@"5 mins":@"5"},
                                   @{@"30 mins":@"30"},
                                   @{@"45 mins":@"45"},

@@ -176,7 +176,7 @@
                                                   otherButtonTitles:nil];
             [alert show];
         }
-        [[UIApplication sharedApplication] cancelLocalNotification:self.takeWalkNotif];
+        [self cancelNotificationNotification];
     }
 }
 
@@ -197,14 +197,18 @@
     self.takeWalkNotif = [[UILocalNotification alloc] init];
     
     NSDictionary *alertValue = [[NSUserDefaults standardUserDefaults] valueForKey:kWalkAlertKey];
-    if ([[[alertValue allValues] firstObject] floatValue] >= 1) {
-        NSTimeInterval interval = [[[alertValue allValues] firstObject] floatValue]; //*60; - 1min = 1 sec - For testing
-        // current time plus 10 secs
+    NSTimeInterval interval = [[[alertValue allValues] firstObject] floatValue]*60.0f;
+    if (interval >= 10) {
         NSDate *now = [NSDate date];
         NSDate *dateToFire = [now dateByAddingTimeInterval:interval];
-        
         self.takeWalkNotif.fireDate = dateToFire;
-        self.takeWalkNotif.alertBody = [NSString stringWithFormat:@"Hey, You are sitting at your desk from past %@ mins! Get up and take some walk.",[[alertValue allValues] firstObject]];
+        if (interval > 60) {
+            self.takeWalkNotif.alertBody = [NSString stringWithFormat:@"Hey, You are sitting at your desk from past %@ mins! Get up and take some walk.",[[alertValue allValues] firstObject]];
+        }
+        else {
+            self.takeWalkNotif.alertBody = [NSString stringWithFormat:@"Hey, You are sitting at your desk from past %@ secs! Get up and take some walk.",[[alertValue allValues] firstObject]];
+        }
+        
         self.takeWalkNotif.soundName = UILocalNotificationDefaultSoundName;
         self.takeWalkNotif.applicationIconBadgeNumber = 1;
         
@@ -214,6 +218,8 @@
 
 - (void)cancelNotificationNotification {
     if (self.takeWalkNotif) {
+        [[NSUserDefaults standardUserDefaults] setValue:@{@"Off":@"0"} forKey:kWalkAlertKey];
+        [[NSUserDefaults standardUserDefaults] synchronize];
         [[UIApplication sharedApplication] cancelLocalNotification:self.takeWalkNotif];
     }
 }
