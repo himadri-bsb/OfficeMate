@@ -40,7 +40,8 @@
     [self setNeedsStatusBarAppearanceUpdate];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleLongPressForCell:) name:kNotification_LongPressTableCell object:nil];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshCell) name:@"push.recieved" object:nil];
+
     self.tableView.tableFooterView = [[UIView alloc] init];
     [self refreshData];
 }
@@ -200,6 +201,11 @@
             [object deleteInBackground];
         }
     }];
+}
+
+- (void)refreshCell {
+    self.tappedCell.isObserving = NO;
+    [self refreshData];
 }
 
 
