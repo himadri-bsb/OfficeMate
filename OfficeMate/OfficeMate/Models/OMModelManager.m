@@ -52,6 +52,7 @@
      */
     self.beaconstac = [Beaconstac sharedInstanceWithOrganizationId:83 developerToken:@"295acec3758b467ab89d78e0024bf9401dc31b78"];
     [self.beaconstac startRangingBeaconsWithUUIDString:@"B9407F30-F5F8-466E-AFF9-25556B57FE6D" beaconIdentifier:@"com.bsb.officemate" filterOptions:nil];
+    self.beaconstac.beaconaffinity = MSBeaconAffinityLow;
 
     /*
      * End of Beaconstac SDK init
@@ -73,7 +74,7 @@
 
 // Tells the delegate about the camped on beacon among available beacons.
 - (void)beaconstac:(Beaconstac*)beaconstac campedOnBeacon:(MSBeacon*)beacon amongstAvailableBeacons:(NSDictionary *)beaconsDictionary {
-    //NSLog(@"beaconstac: campedOnBeacon: %@, %@", beacon.beaconKey, beaconsDictionary);
+    NSLog(@"campedOnBeacon: %@", beacon.beaconKey);
 
     OMUser *currentUser = [[OMModelManager sharedManager] currentUser];
     if(![PFUser currentUser]) {
@@ -123,7 +124,7 @@
 
 // Tells the delegate when the device exits from the camped on beacon range.
 - (void)beaconstac:(Beaconstac*)beaconstac exitedBeacon:(MSBeacon*)beacon {
-    //NSLog(@"beaconstac:  exitedBeacon:%@", beacon.beaconKey);
+    NSLog(@"exitedBeacon: %@", beacon.beaconKey);
 
     OMUser *currentUser = [[OMModelManager sharedManager] currentUser];
     if(![PFUser currentUser]) {
@@ -159,12 +160,12 @@
 
 // Tells the delegate when the device has entered a beacon region
 - (void)beaconstac:(Beaconstac*)beaconstac didEnterBeaconRegion:(CLRegion*)region {
-    NSLog(@"DemoApp:Entered beacon region :%@", region.identifier);
+    //NSLog(@"DemoApp:Entered beacon region :%@", region.identifier);
 }
 
 // Tells the delegate when the device has exited a beacon region
 - (void)beaconstac:(Beaconstac*)beaconstac didExitBeaconRegion:(CLRegion *)region {
-    NSLog(@"DemoApp:Exited beacon region :%@", region.identifier);
+    //NSLog(@"DemoApp:Exited beacon region :%@", region.identifier);
 }
 
 #pragma mark - Push Notification Sending

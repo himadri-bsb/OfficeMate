@@ -139,7 +139,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             if (!error) {
                 // The find succeeded. The first 100 objects are available in objects
-                NSLog(@"%@", objects);
+                //NSLog(@"%@", objects);
                 self.usersArray = [NSMutableArray arrayWithArray:objects];
                 [self.tableView reloadData];
             } else {
