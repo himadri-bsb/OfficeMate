@@ -206,7 +206,7 @@
             self.takeWalkNotif.alertBody = [NSString stringWithFormat:@"Hey, You are sitting at your desk from past %@ mins! Get up and take some walk.",[[alertValue allValues] firstObject]];
         }
         else {
-            self.takeWalkNotif.alertBody = [NSString stringWithFormat:@"Hey, You are sitting at your desk from past %@ secs! Get up and take some walk.",[[alertValue allValues] firstObject]];
+            self.takeWalkNotif.alertBody = [NSString stringWithFormat:@"Hey, You are sitting at your desk from past %.0f secs! Get up and take some walk.",interval];
         }
         
         self.takeWalkNotif.soundName = UILocalNotificationDefaultSoundName;
